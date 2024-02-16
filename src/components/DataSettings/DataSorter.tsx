@@ -4,9 +4,11 @@ import { useData } from '../../contexts/dataContext'
 import { useState } from 'react';
 import { Column } from '../../types/Data';
 import sortData from '../../utils/sortAlgorithms';
+import { useDuration } from '../../contexts/durationContext';
 
 const DataSorter = () => {
     const { data, filteredData, setFilteredData } = useData();
+    const { setDuration } = useDuration();
 
     const possibleSortAlgorithms: SortAlgorithm[] = [
         'BubbleSort',
@@ -25,8 +27,12 @@ const DataSorter = () => {
 
     const onHandleSort = () => {
         if(!filteredData) alert("no Data fetched!")
+        const startTime = performance.now();
         const result = sortData(selectedOptions.sortAlgorithm, filteredData!, selectedOptions.column);
         setFilteredData(result!);
+        const endTime = performance.now();
+        const duration = endTime - startTime;
+        setDuration({algorithm: selectedOptions.sortAlgorithm, durationTime: duration, searchedRecords: filteredData!.length})
     }
 
   return (

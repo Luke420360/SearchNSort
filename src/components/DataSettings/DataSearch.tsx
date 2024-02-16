@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { useData } from '../../contexts/dataContext';
 import { Column } from '../../types/Data';
 import searchData from '../../utils/searchAlgorithms';
+import { useDuration } from '../../contexts/durationContext';
 
 const DataSearch = () => {
   const { data, setFilteredData } = useData();
+  const { setDuration } = useDuration()
 
   const possibleSearchAlgorithms: SearchAlgorithm[] = [
     'LinearSearch',
@@ -26,9 +28,12 @@ const DataSearch = () => {
 
   const onHandleSearch = () => {
     if (!data) alert("no Data fetched!")
-    console.log(selectedOptions.searchParam)
+    const startTime = performance.now();
     const result = searchData(data!, selectedOptions.column, selectedOptions.searchAlgorithm, selectedOptions.searchParam, selectedOptions.strictMode);
     setFilteredData(result!);
+    const endTime = performance.now();
+    const duration = endTime - startTime;
+    setDuration({algorithm: selectedOptions.searchAlgorithm, durationTime: duration, searchedRecords: data!.length})
   }
 
   return (

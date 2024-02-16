@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import Data from "../types/Data";
 
-type TodoContextProviderProps = {
+type DataContextProviderProps = {
   children: React.ReactNode;
 }
 
@@ -14,7 +14,7 @@ type DataContext = {
 
 export const DataContext = createContext<DataContext | null>(null);
 
-export const DataContextProvider = ({ children }: TodoContextProviderProps) => {
+export const DataContextProvider = ({ children }: DataContextProviderProps) => {
     const [data, setData] = useState<Data[] | null>(null)
     const [filteredData, setFilteredData] = useState<Data[] | null>(null)
   return (
