@@ -1,5 +1,7 @@
 import Data, { Column } from "../../types/Data";
 import SearchAlgorithm from "../../types/SearchAlgorithm";
+import sortData from "../sortAlgorithms";
+import binarySearch from "./binarySearch";
 import linearSearch from "./linearSearch";
 
 function searchData(data: Data[], column: Column, searchAlgorithm: SearchAlgorithm, searchParam: string, strict: boolean) {
@@ -8,7 +10,14 @@ function searchData(data: Data[], column: Column, searchAlgorithm: SearchAlgorit
     switch(searchAlgorithm) {
         case "LinearSearch": searchedData =  linearSearch(data, column, searchParam, strict)
         break;
-        case "BinarySearch": searchedData = data;
+        case "BinarySearch": {
+            let newData = [...data];
+            console.log("sort...");
+            newData = sortData("QuickSort", data, column);
+            console.log("search...");
+            searchedData = binarySearch(newData, column, searchParam, strict);
+            console.log("ready...")
+        }
     }
     const endTime = performance.now();
     const duration = endTime - startTime;

@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Select } from '@chakra-ui/react'
+import { AccordionButton, AccordionItem, AccordionPanel, Box, Button, Heading, Select } from '@chakra-ui/react'
 import SortAlgorithm from '../../types/SortAlgorithm'
 import { useData } from '../../contexts/dataContext'
 import { useState } from 'react';
@@ -30,37 +30,42 @@ const DataSorter = () => {
     }
 
   return (
-    <Box p={2}>
-        <Heading size={"sm"}>Sort Algorithms</Heading>
+    <AccordionItem>
+      <AccordionButton>
+        <Box as='span' flex={1} textAlign="left">
+          <Heading size={"sm"}>Sort Algorithms</Heading>
+        </Box>
+      </AccordionButton>
+      <AccordionPanel>
+        <Box>
+          <Select 
+            p={2} 
+            placeholder='Select a Column'
+            onChange={(e) => setSelectedOptions({...selectedOptions, column: e.target.value as Column})}
+            >
+              {possibleColumns?.map((column, index) => (
+                  <option key={index}>{column}</option>
+              ))}
+          </Select>
 
-        <Select 
-          p={2} 
-          placeholder='Select a Column'
-          onChange={(e) => setSelectedOptions({...selectedOptions, column: e.target.value as Column})}
-          >
-            {possibleColumns?.map((column, index) => (
-                <option key={index}>{column}</option>
-            ))}
-        </Select>
+          <Select 
+            p={2} 
+            placeholder='Select a Sort Algortihm'
+            onChange={(e) => setSelectedOptions({...selectedOptions, sortAlgorithm: e.target.value as SortAlgorithm})}
+            >
+              {possibleSortAlgorithms.map((algorithm, index) => (
+                  <option key={index}>{algorithm}</option>
+              ))}
+          </Select>
 
-        <Select 
-          p={2} 
-          placeholder='Select a Sort Algortihm'
-          onChange={(e) => setSelectedOptions({...selectedOptions, sortAlgorithm: e.target.value as SortAlgorithm})}
-          >
-            {possibleSortAlgorithms.map((algorithm, index) => (
-                <option key={index}>{algorithm}</option>
-            ))}
-        </Select>
-
-        <Button 
-          onClick={onHandleSort}
-          size={'sm'}
-          colorScheme='teal'
-          >
-            Sort
-        </Button>
-    </Box>
+          <Button 
+            onClick={onHandleSort}
+            >
+              Sort
+          </Button>
+        </Box>
+      </AccordionPanel>
+    </AccordionItem>
   )
 }
 

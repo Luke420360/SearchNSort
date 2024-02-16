@@ -1,4 +1,4 @@
-import { Card, CardBody, Heading } from '@chakra-ui/react'
+import { Accordion, Box, Card, CardBody, Heading } from '@chakra-ui/react'
 import DataSorter from './DataSorter';
 import DataSearch from './DataSearch';
 
@@ -8,9 +8,13 @@ const DataSettings = () => {
     <>
       <Card>
         <CardBody>
-          <Heading size={"md"} color={"teal"}>Settings</Heading>
-          <DataSorter />
-          <DataSearch />
+          <Box p={2}>
+            <Heading size={"lg"} color={"teal"}>Settings</Heading>
+          </Box>
+          <Accordion allowMultiple>
+            <DataSorter />
+            <DataSearch />
+          </Accordion>
         </CardBody>
       </Card>
     </>

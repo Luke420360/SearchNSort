@@ -28,11 +28,11 @@ const DataTable = () => {
     }
 
     return (
-        <Card>
+        <Card variant={'outline'}>
             <CardBody pb={0}>
                 {filteredData?<TableContainer>
                     <Box maxHeight={450} overflow='auto'>
-                        <Table size="sm" colorScheme="teal" overflow={"scroll"} width="100%">
+                        <Table size="xs" colorScheme="teal" overflow={"scroll"} width="100%">
                             <Thead>
                                 <Tr>
                                     {columnHeaders!.map((header, index) => (
