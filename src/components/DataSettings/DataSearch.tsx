@@ -1,4 +1,4 @@
-import { Heading, Box, Select, Input, Checkbox, Button, AccordionItem, AccordionButton, AccordionPanel } from '@chakra-ui/react'
+import { Heading, Box, Select, Input, Checkbox, Button, AccordionItem, AccordionButton, AccordionPanel, Flex } from '@chakra-ui/react'
 import SearchAlgorithm from '../../types/SearchAlgorithm';
 import { useState } from 'react';
 import { useData } from '../../contexts/dataContext';
@@ -45,46 +45,56 @@ const DataSearch = () => {
       </AccordionButton>
       <AccordionPanel>
         <Box>
-          <Select
-            p={2}
-            placeholder='Select a Search Algortihm'
-            onChange={(e) => setSelectedOptions({ ...selectedOptions, searchAlgorithm: e.target.value as SearchAlgorithm })}
-          >
-            {possibleSearchAlgorithms.map((algorithm, index) => (
-              <option key={index}>{algorithm}</option>
-            ))}
-          </Select>
-          <Select
-            p={2}
-            placeholder='Select a Column'
-            onChange={(e) => setSelectedOptions({ ...selectedOptions, column: e.target.value as Column })}
-          >
-            {possibleColumns?.map((column, index) => (
-              <option key={index}>{column}</option>
-            ))}
-          </Select>
-          <Input
-            m={2}
-            value={selectedOptions.searchParam}
-            placeholder={"Search Param"}
-            onChange={(e) => {
-              setSelectedOptions({ ...selectedOptions, searchParam: e.target.value });
-            }}
-          />
-          <Checkbox
-            title='Strictmode'
-            colorScheme='teal'
-            pt={2}
-            pb={2}
-            w="100%"
-            checked={selectedOptions.strictMode}
-            onChange={(e) => setSelectedOptions({ ...selectedOptions, strictMode: e.target.checked })}
-          >
-            Strichtmode
-          </Checkbox>
+          <Flex>
+            <Select
+              size={"sm"}
+              p={2}
+              placeholder='Select a Search Algortihm'
+              onChange={(e) => setSelectedOptions({ ...selectedOptions, searchAlgorithm: e.target.value as SearchAlgorithm })}
+            >
+              {possibleSearchAlgorithms.map((algorithm, index) => (
+                <option key={index}>{algorithm}</option>
+              ))}
+            </Select>
+            <Select
+            size={"sm"}
+              p={2}
+              placeholder='Select a Column'
+              onChange={(e) => setSelectedOptions({ ...selectedOptions, column: e.target.value as Column })}
+            >
+              {possibleColumns?.map((column, index) => (
+                <option key={index}>{column}</option>
+              ))}
+            </Select>
+          </Flex>
+          <Flex w={"100%"}>
+            <Input
+              m={2}
+              value={selectedOptions.searchParam}
+              size={"sm"}
+              w={"47%"}
+              placeholder={"Search Param"}
+              onChange={(e) => {
+                setSelectedOptions({ ...selectedOptions, searchParam: e.target.value });
+              }}
+            />
+            <Checkbox
+              title='Strictmode'
+              colorScheme='teal'
+              ml={2}
+              pt={2}
+              pb={2}
+              checked={selectedOptions.strictMode}
+              onChange={(e) => setSelectedOptions({ ...selectedOptions, strictMode: e.target.checked })}
+            >
+              Strict-Search
+            </Checkbox>
+          </Flex>
           <Button
+            ml={2}
+            size={"sm"}
             onClick={onHandleSearch}
-          >
+            >
             Search
           </Button>
         </Box>

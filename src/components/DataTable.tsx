@@ -28,10 +28,10 @@ const DataTable = () => {
     }
 
     return (
-        <Card variant={'outline'}>
+        <Card variant={'outline'} boxShadow={"lg"} size={"md"}>
             <CardBody pb={0}>
                 {filteredData?<TableContainer>
-                    <Box maxHeight={450} overflow='auto'>
+                    <Box maxHeight={430} overflow='auto'>
                         <Table size="xs" colorScheme="teal" overflow={"scroll"} width="100%">
                             <Thead>
                                 <Tr>

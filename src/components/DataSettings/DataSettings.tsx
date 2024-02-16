@@ -7,10 +7,10 @@ import DataResultPanel from './DataResultPanel';
 const DataSettings = () => {
   return (
     <>
-      <Card>
+      <Card boxShadow={"2xl"}>
         <CardBody>
           <Box p={2}>
-            <Heading size={"lg"} color={"teal"}>Settings</Heading>
+            <Heading size={"md"} color={"teal"}>Settings</Heading>
           </Box>
           <DataResultPanel />
           <Accordion allowMultiple>
@@ -23,4 +23,4 @@ const DataSettings = () => {
   )
 }
 
-export default DataSettings
+export default DataSettings;

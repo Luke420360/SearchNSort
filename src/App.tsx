@@ -10,14 +10,14 @@ function App() {
   return (
       <>
         <Navbar />
-        <Flex>
+        <Flex bg={"Menu"} p={2} pb={8} h={"100vh"}>
           <DataContextProvider>
             <DurationContextProvider>
               <Box p={8} width="59%">
                 <DataTable />
               </Box>
               <Spacer />
-              <Box pr={8} pt={8} width="50%">
+              <Box pr={8} pt={8} width="41%">
                 <DataSettings />
               </Box>
             </DurationContextProvider>

@@ -6,7 +6,7 @@ const DataResultPanel = () => {
   if(!duration) return null;
 
   return (
-    <Box w="100%">
+    <Box w="100%" pl={2} pb={2}>
         <Heading size={'md'}></Heading>
         <Text>
             {`Algorithm: ${duration?.algorithm}`}
